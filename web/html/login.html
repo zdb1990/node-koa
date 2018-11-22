@@ -10,17 +10,32 @@
 </head>
 
 <body>
-    <form method="post">
-        <label>姓名</label>
-        <input type="text" name="user"><br>
-        <label>密码</label>
-        <input type="password" name="pass"><br>
-        <input type="submit" value="提交">
-    </form>
-    <script>
-        window.onload = function() {
+    <label>姓名</label>
+    <input type="text" name="user"><br>
+    <label>密码</label>
+    <input type="password" name="pass"><br>
+    <button>提交</button>
 
-        }
+    <script>
+        $(document).ready(function() {
+            $('button').click(function() {
+                $.ajax({
+                    url: 'http://localhost:8080/login',
+                    type: 'POST',
+                    ContentType: 'application/json; charset=utf-8',
+                    data: {
+                        'user': $('input').eq(0).val(),
+                        'password': $('input').eq(1).val()
+                    },
+                    success: function(res) {
+                        console.log(res);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                })
+            })
+        });
     </script>
 </body>
 
