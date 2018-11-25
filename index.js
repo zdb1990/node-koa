@@ -16,10 +16,6 @@ server.use(session({
     store: new MysqlStore(config) //配置session存入mysql
 }));
 server.use(cors());
-server.use((ctx, next) => {
-    if (ctx.request.url === "/favicon.ico") return
-    next();
-})
 server.use(require('./routers/login.js').routes()); //登录路由
 //读取静态文件
 server.use(static('./www'));

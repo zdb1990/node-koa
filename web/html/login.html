@@ -17,20 +17,22 @@
     <button>提交</button>
 
     <script>
-        $(document).ready(function() {
-            $('button').click(function() {
+        $(document).ready(function () {
+            $('button').click(function () {
                 $.ajax({
                     url: 'http://localhost:8080/login',
-                    type: 'POST',
-                    ContentType: 'application/json; charset=utf-8',
+                    type: 'post',
+                    // dataType: 'json',
+                    // contentType: 'application/json',
+                    // Accept: 'application/json',
                     data: {
                         'user': $('input').eq(0).val(),
                         'password': $('input').eq(1).val()
                     },
-                    success: function(res) {
+                    success: function (res) {
                         console.log(res);
                     },
-                    error: function(err) {
+                    error: function (err) {
                         console.log(err);
                     }
                 })
