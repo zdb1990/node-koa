@@ -17,6 +17,7 @@ server.use(session({
 }));
 server.use(cors());
 server.use(require('./routers/login.js').routes()); //登录路由
-//读取静态文件
+server.use(require('./routers/add_user.js').routes()) //注册路由
+    //读取静态文件
 server.use(static('./www'));
 server.listen(8080);
