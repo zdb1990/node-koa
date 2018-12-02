@@ -13,7 +13,10 @@ server.use(bodyParser());
 //配置session中间件
 server.use(session({
     key: 'USER_SID',
-    store: new MysqlStore(config) //配置session存入mysql
+    maxAge: 7200000, //2小时
+    store: new MysqlStore(config), //配置session存入mysql
+    httpOnly: true, /** (boolean) httpOnly or not (default true) */
+    signed: true
 }));
 server.use(cors());
 server.use(require('./routers/login.js').routes()); //登录路由

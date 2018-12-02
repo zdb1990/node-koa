@@ -6,7 +6,7 @@ const createId = require('./../common/createstr'); //随机生成32位id
 const select=(username)=>{
     return new Promise((reslove,reject)=>{
         console.log(`${username}`);
-        db.query(`SELECT * FROM add_user WHERE user='${username}' `,(err,data)=>{
+        db.query(`SELECT * FROM user WHERE user='${username}' `,(err,data)=>{
             if(!err){
                 let resData=Data.handelData(data);
                 reslove(resData);
@@ -33,7 +33,7 @@ exports.add=async(ctx,next)=>{
     }else{
         await new Promise((reslove,reject)=>{
             console.log(1);
-            db.query(`INSERT INTO add_user (user, pass, id) VALUES ('${user.name}', '${user.pass}', '${user.id}');`,(err,data)=>{
+            db.query(`INSERT INTO user (user, pass, id) VALUES ('${user.name}', '${user.pass}', '${user.id}');`,(err,data)=>{
                 if(!err){
                     reslove()
                 }else{
@@ -42,6 +42,6 @@ exports.add=async(ctx,next)=>{
            });
         })
         ctx.status = 200;
-        ctx.body={success:true,status:500,msg:'注册成功'};
+        ctx.body={success:true,msg:'注册成功'};
     };
 }
